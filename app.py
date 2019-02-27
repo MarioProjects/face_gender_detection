@@ -23,12 +23,10 @@ import numpy as np
 import pickle
 import pathlib
 import time
-import cv2
 
 import torch
 from torch import nn, optim
 from torch.autograd.variable import Variable
-from torchvision import transforms, datasets
 import torch.nn.functional as F
 
 

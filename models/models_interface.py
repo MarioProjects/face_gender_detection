@@ -3,7 +3,6 @@
 '''
 
 import torch
-from torchvision import datasets, models, transforms
 import torch.nn as nn
 import os
 from collections import OrderedDict
