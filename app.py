@@ -29,10 +29,9 @@ from torch import nn, optim
 from torch.autograd.variable import Variable
 import torch.nn.functional as F
 
-from models import models_interface
-import albumentations
+import cv2
 
-from PIL import Image
+from models import models_interface
 import face_recognition
 
 CAT2CLASS = {0:"Male", 1:"Female"}
@@ -62,7 +61,6 @@ MODEL = MODEL.cpu()
 MODEL.eval()
 
 SOFTMAX = nn.Softmax()
-TRANSFORMS_SAMPLE = albumentations.Resize(80,80)
 
 # Define a flask app
 app = Flask(__name__)
@@ -123,14 +121,14 @@ def predictModel():
             top, right, bottom, left = face_location
 
             # We take the face and transform it and cast into a torch format
-            face_cropped = img[top:bottom, left:right]
-            face_cropped_transformed = apply_img_albumentation(TRANSFORMS_SAMPLE, face_cropped)
-            sample = torch.from_numpy(face_cropped_transformed.transpose(2,0,1))
-            sample = sample.unsqueeze(0).type('torch.FloatTensor')
+            face = img[top:bottom, left:right]
+            face = cv2.resize(face, (80, 80)) 
+            face = torch.from_numpy(face.transpose(2,0,1))
+            face = face.unsqueeze(0).type('torch.FloatTensor')
 
             # We make the prediction of the current face
             with torch.no_grad():
-                prediction = MODEL(sample.cpu())
+                prediction = MODEL(face.cpu())
             preds_classes = torch.argmax(prediction, dim=1)
             confianza = SOFTMAX(prediction)
 
