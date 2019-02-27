@@ -1,9 +1,8 @@
 Werkzeug
 Flask
 numpy
-Keras
+pytorch
 gevent
 pillow
 h5py
-tensorflow
 face_recognition
