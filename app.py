@@ -32,16 +32,13 @@ from torchvision import transforms, datasets
 import torch.nn.functional as F
 
 
-from pytorchlib.pytorch_models import models_interface
-from pytorchlib.pytorch_library import utils_general, utils_training
+from models import models_interface
 
 import data_generator as data_lfw
 import albumentations
 
 from PIL import Image
 import face_recognition
-
-import pytorchlib.pytorch_data.load_data as load_data
 
 """ -- MODEL LOAD -- """
 
@@ -76,6 +73,10 @@ print("\n########################################")
 print('--- Running on http://localhost:5000 ---')
 print("########################################\n")
 
+
+def apply_img_albumentation(aug, image):
+    image = aug(image=image)['image']
+    return image
 
 def get_file_path_and_save(request):
     # Get the file from post request
@@ -125,7 +126,7 @@ def predictModel():
 
             # We take the face and transform it and cast into a torch format
             face_cropped = img[top:bottom, left:right]
-            face_cropped_transformed = load_data.apply_img_albumentation(TRANSFORMS_SAMPLE, face_cropped)
+            face_cropped_transformed = apply_img_albumentation(TRANSFORMS_SAMPLE, face_cropped)
             sample = torch.from_numpy(face_cropped_transformed.transpose(2,0,1))
             sample = sample.unsqueeze(0).type('torch.FloatTensor')
 
