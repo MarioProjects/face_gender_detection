@@ -35,6 +35,8 @@ The Flask + Pytorch server can be started by running:
  $ python app.py
 ```
 
+Note: For Free Heroku account only 500MB of space will be allocated, GPU version of pytorch takes huge space. So, use CPU version of pytorch for Inference. 
+
 ![Example execution](uploads/example_execution.png)
 
 We have successfully called the Pytorch REST API and obtained the model’s predictions via Python and we have achieved successful estimates :)

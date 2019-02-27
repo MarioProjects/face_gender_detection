@@ -1,7 +1,7 @@
 Werkzeug
 Flask
 numpy
-pytorch-cpu
+https://download.pytorch.org/whl/cpu/torch-1.0.1.post2-cp36-cp36m-linux_x86_64.whl
 gevent
 pillow
 h5py
