@@ -29,14 +29,13 @@ from torch import nn, optim
 from torch.autograd.variable import Variable
 import torch.nn.functional as F
 
-
 from models import models_interface
-
-import data_generator as data_lfw
 import albumentations
 
 from PIL import Image
 import face_recognition
+
+CAT2CLASS = {0:"Male", 1:"Female"}
 
 """ -- MODEL LOAD -- """
 
@@ -136,7 +135,7 @@ def predictModel():
             confianza = SOFTMAX(prediction)
 
             # We take out the information from the prediction
-            genero = data_lfw.CAT2CLASS[preds_classes[0].item()]
+            genero = CAT2CLASS[preds_classes[0].item()]
             confianza = confianza[0][preds_classes[0].item()].item()*100
 
             if genero.lower()=="female": female_count+=1
