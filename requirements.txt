@@ -1,7 +1,7 @@
 Werkzeug
 Flask
 numpy
-pytorch
+pytorch-cpu
 gevent
 pillow
 h5py

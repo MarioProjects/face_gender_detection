@@ -61,6 +61,7 @@ else: model_cfg_txt = model_cfg
 print("{} - {} using {} - LFW - Color!)".format(model_type, str(model_cfg_txt), optimizador))
 states_path = "models/CE_Simple_checkpoint_state_mobilenetsmall_color.pt"
 MODEL = models_interface.load_model(model_type, states_path=states_path, model_config=model_cfg, dropout=dropout, ruido=ruido, input_channels=input_channels, growth_rate=growth_rate, flat_size=flat_size, in_features=in_features, out_type=out_type, block_type=block_type, out_features=num_classes, last_pool_size=last_pool_size)
+MODEL = MODEL.cpu()
 MODEL.eval()
 
 SOFTMAX = nn.Softmax()
@@ -132,7 +133,7 @@ def predictModel():
 
             # We make the prediction of the current face
             with torch.no_grad():
-                prediction = MODEL(sample.cuda())
+                prediction = MODEL(sample.cpu())
             preds_classes = torch.argmax(prediction, dim=1)
             confianza = SOFTMAX(prediction)
 
