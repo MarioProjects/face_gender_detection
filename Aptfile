@@ -2,6 +2,4 @@ libsm6
 libxrender1
 libfontconfig1
 libice6
-cmake
-Werkzeug
-Flask
+python3-pip
