@@ -65,11 +65,6 @@ SOFTMAX = nn.Softmax()
 # Define a flask app
 app = Flask(__name__)
 
-print("\n########################################")
-print('--- Running on http://localhost:5000 ---')
-print("########################################\n")
-
-
 def apply_img_albumentation(aug, image):
     image = aug(image=image)['image']
     return image
@@ -155,5 +150,8 @@ if __name__ == '__main__':
     # Serve the app with gevent
     app.debug = True
     port = int(os.environ.get('PORT', 5000))
+    print("\n########################################")
+    print('--- Running on port {} ---'.format(port))
+    print("########################################\n")
     http_server = WSGIServer(('', port), app)
     http_server.serve_forever()
