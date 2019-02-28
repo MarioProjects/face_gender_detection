@@ -1,4 +1,5 @@
-# Deep Learning Pytorch and Flask as Web App
+# Web Rest Api face detection with gender classification
+### Deep Learning Pytorch and Flask as Web App
 Here we will present a simple method to take a Pytorch model and create Python Flask Web App.
 
 Specifically, we will:
