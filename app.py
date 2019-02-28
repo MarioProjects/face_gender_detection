@@ -154,5 +154,6 @@ def predictModel():
 if __name__ == '__main__':
     # Serve the app with gevent
     app.debug = True
-    http_server = WSGIServer(('', 5000), app)
+    port = int(os.environ.get('PORT', 5000))
+    http_server = WSGIServer(('', port), app)
     http_server.serve_forever()
