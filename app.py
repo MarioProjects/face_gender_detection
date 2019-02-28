@@ -97,6 +97,9 @@ def predictModel():
         # I load the image and treat it normally (I am on Python!)
         img = face_recognition.load_image_file(file_path)
 
+        # Remove file to no store trash
+        os.remove(file_path)
+
         # We go to the detection of the faces to extract them with face_recognition
         # https://github.com/ageitgey/face_recognition
         print("Ha llegado una imagen nueva! Procedemos a detectar los rostros...")
