@@ -18,7 +18,7 @@ def load_model(model_name, model_config=[], states_path="", model_path="", input
     if not os.path.exists(states_path): assert False, "Wrong Models_States Path!"
 
     if 'MobileNetv2' in model_name:
-        my_model = MobileNetv2Model(model_config, input_channels, out_features, flat_size, last_pool_size).cuda()
+        my_model = MobileNetv2Model(model_config, input_channels, out_features, flat_size, last_pool_size).cpu()
     else: assert False, "Model '" + str(model_name) + "' not configured!"
     if data_parallel: my_model = torch.nn.DataParallel(my_model, device_ids=range(torch.cuda.device_count()))
 

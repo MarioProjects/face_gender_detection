@@ -111,7 +111,7 @@ class MobileNetV2(nn.Module):
 
 def MobileNetv2Model(mobilenet_name, input_channels, num_classes, flat_size, last_pool_size):
     if mobilenet_name not in cfg:
-        assert False, 'No MobileNetv2 Model with that name!'
+        assert False, 'No MobileNetv2 Model with this name!'
     else:
         my_model = MobileNetV2(mobilenet_name, input_channels, flat_size, last_pool_size, num_classes).cpu()
         return my_model
