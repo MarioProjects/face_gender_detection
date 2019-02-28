@@ -22,7 +22,7 @@ def load_model(model_name, model_config=[], states_path="", model_path="", input
     else: assert False, "Model '" + str(model_name) + "' not configured!"
     if data_parallel: my_model = torch.nn.DataParallel(my_model, device_ids=range(torch.cuda.device_count()))
 
-    model_state_dict = torch.load(states_path)
+    model_state_dict = torch.load(states_path, map_location=lambda storage, location: storage)
 
     # create new OrderedDict that does not contain `module.`
     new_state_dict = OrderedDict()
